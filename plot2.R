@@ -1,0 +1,11 @@
+getwd()
+setwd("C:/Users/aaa/Desktop/R/coursera")
+data1 <- read.table(file = "C:/Users/aaa/Desktop/R/coursera/household_power_consumption.txt", header = T, sep = ";", na.strings = "?")
+data2 <- subset(data1, Date == "1/2/2007" | Date == "2/2/2007")
+data2$datetime <- as.POSIXct(paste(data2$Date, data2$Time), format = "%d/%m/%Y %H:%M:%S")
+plot(data2$datetime, data2$Global_active_power, type ='l', ylab = "Global Active Power (kilowatts)", xlab ="")
+png(filename = "plot2.png", width = 480, height = 480, units = "px")
+dev.off()
+dev.copy(png, file="plot2.png")
+dev.off()
+
